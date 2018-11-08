@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'AuthController@index');
+Route::get('register', 'AuthController@create');
+Route::post('register/store', 'AuthController@store');
+Route::post('login', 'AuthController@login');
+Route::get('logout', 'AuthController@logout');
+
+Route::middleware('system.auth')->group(function(){
+    Route::get('ujian','QuestionController@index');
 });
