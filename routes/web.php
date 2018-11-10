@@ -20,3 +20,17 @@ Route::get('logout', 'AuthController@logout');
 Route::middleware('system.auth')->group(function(){
     Route::get('ujian','QuestionController@index');
 });
+
+//superadmin
+Route::namespace('admin')->group(function(){
+    Route::prefix('admin')->group(function(){
+        Route::get('dashboard','DashboardController@index');
+
+        Route::get('question','MasterQuestionController@index');
+        Route::get('question/create','MasterQuestionController@create');
+
+        Route::get('user','UserController@index');
+
+        Route::get('live','LiveScoreController@index');
+    });
+});
