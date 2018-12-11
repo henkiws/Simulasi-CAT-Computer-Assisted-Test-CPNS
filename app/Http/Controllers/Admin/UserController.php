@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\DataTables\Facades\DataTables;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -25,6 +27,33 @@ class UserController extends Controller
     public function create()
     {
         //
+    }
+
+    public function datatables(Request $request)
+    {
+        if($request->ajax()) {
+            $select = User::with('user_detail')->get();
+            // dd($select);
+            $data = Datatables::of($select)
+                ->editColumn('gender', function($select) {
+                    return $select->user_detail->gender==1 ? "Laki laki" : "Perempuan";
+                })
+                ->editColumn('address', function($select) {
+                    return $select->user_detail->address;
+                })
+                ->editColumn('date_birth', function($select) {
+                    return $select->user_detail->date_birth;
+                })
+                ->editColumn('status', function($select) {
+                    return $select->status == 1 ? "<label class='label label-success'>Active</label>" : "<label class='label label-danger'>Not Active</label>";
+                })
+                ->addIndexColumn()
+                ->rawColumns(['status']);
+
+            return $data->make(true);
+        }
+
+        return abort('404', 'Upps');
     }
 
     /**

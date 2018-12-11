@@ -1,27 +1,5 @@
 @extends('layout.index')
 @section('content')
-<div class="navbar navbar-inverse set-radius-zero">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html">
-
-                <img src="assets/img/logo.png" />
-            </a>
-
-        </div>
-
-        <div class="left-div">
-            <i class="fa fa-user-plus login-icon" ></i>
-    </div>
-        </div>
-    </div>
-<!-- LOGO HEADER END-->
-
 <!-- MENU SECTION END-->
 <div class="content-wrapper">
     <div class="container">
@@ -40,6 +18,13 @@
                     <input type="text" class="form-control" name="nama"/>
                     <label>Email :  </label>
                     <input type="email" class="form-control" name="email"/>
+                    <label>Tanggal Lahir : </label>
+                    <input type="date" class="form-control" name="date_birth"/>
+                    <label>Jenis Kelamin : </label><br>
+                    <input type="radio" name="gender" value="1">Laki laki
+                    <input type="radio" name="gender" value="0">Perempuan<br>
+                    <label>Address : </label>
+                    <textarea class="form-control" name="address"></textarea>
                     <label>Password :  </label>
                     <input type="password" class="form-control" name="password"/>
                     <hr />

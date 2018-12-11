@@ -11,38 +11,60 @@
         </div>
         <div class="row">
             <div class="col-md-9">
-                @foreach ($data as $item)
+                <form action="{{ url('answer') }}" method="POST" name="form">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="id" >
+                    {{-- <input type="hidden" name="question" > --}}
+                    <input type="hidden" name="page">
+                    <input type="hidden" name="ljk" value="{{ $data[0]->ljk_id }}">
                     <div class="soal">
-                        {{ $item->question }}<br>
+                        {{-- @if($question->istext==1)
+                           {{ $page }}. {{ $question->question }}
+                        @else
+                        {{ $page }}. <img src="{{url('img/question')}}/{{ $question->question }}" class='img'>
+                        @endif --}}
+                        <div id="res_soal"></div>
                     </div>
                     <div class="pilihan">
-                    @foreach($item->option->shuffle() as $val)
-                        {{ $val->choise }}<br>
-                    @endforeach
+                    {{-- @foreach($question->option->shuffle() as $val)
+                        @if($data[0]->answer_id == $val->id)
+                            <input type="radio" name="answer" value="{{ $val->id }}" checked> {{ $val->choise }}<br>
+                        @else
+                            <input type="radio" name="answer" value="{{ $val->id }}"> {{ $val->choise }}<br>
+                        @endif
+                    @endforeach --}}
+                        <div id="res_pilihan"></div>
                     </div>
-                @endforeach
+                    <div align="right">
+                        <a name="lewat" data='1' class="btn btn-primary">Lewatkan soal ini</a>
+                        <button type="button" name="simpan" class="btn btn-primary">Simpan dan Lanjutkan</button>
+                    </div>
+                </form>
             </div>
-            <div class="col-md-3" style="top:-110px;">
-                <div class="alert alert-info">
-                    This is a free bootstrap admin template with basic pages you need to craft your project. 
-                    Use this template for free to use for personal and commercial use.
-                    <br />
-                     <strong> Some of its features are given below :</strong>
-                    <ul>
-                        <li>
-                            Responsive Design Framework Used
-                        </li>
-                        <li>
-                            Easy to use and customize
-                        </li>
-                        <li>
-                            Font awesome icons included
-                        </li>
-                        <li>
-                            Clean and light code used.
-                        </li>
-                    </ul>
-                   
+            <div class="col-md-3" style="top:-130px;">
+                <div align="center" class="alert alert-info" style="padding:0">
+                        <table class="table table-condensed" style="margin-bottom:0px;" align="center">
+                            <tbody>
+                                Lembar Jawaban
+                                {{ $data->total() }}
+                                <?php $end=1; ?>
+                                @foreach(range(1,20) as $num)
+                                <?php
+                                    $start= $end==1 ? $end : $end+1;
+                                    $end=$num*5;
+                                ?>
+                                <tr>
+                                    @for($b=$start;$b<=$end;$b++)
+                                        @if($sheet[$b-1]->answer_id)
+                                        <td><a name="ljk_num" id="ljk_{{ $b }}" data="{{ $b }}" href="#" class="nav-soal text-center" style="background-color: green;">{{ $b }}</a></td>
+                                        @else
+                                        <td><a name="ljk_num" id="ljk_{{ $b }}" data="{{ $b }}" href="#" class="nav-soal text-center" style="background-color: red;">{{ $b }}</a></td>
+                                        @endif
+                                    @endfor
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>                   
                 </div>
             </div>
 

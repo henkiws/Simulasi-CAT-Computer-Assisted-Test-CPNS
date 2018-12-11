@@ -4,9 +4,8 @@
     <section class="content-header">
     <h6>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">UI</a></li>
-            <li class="active">General</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Master</a></li>
+            <li class="active">Question</li>
         </ol>
     </h6>
     
@@ -15,7 +14,7 @@
     <section class="content">
             <div class="box box-default color-palette-box">
             <div class="box-header with-border">
-              <h3 class="box-title"><i class="fa fa-tag"></i><strong> Daftar Pertanyaan</strong></h3>
+              <h3 class="box-title"><i class="fa fa-tag"></i><strong> Questions</strong></h3>
             </div>
             <div class="box-body">
               <div class="row" style="margin-bottom:10px;">
@@ -23,12 +22,12 @@
                     
                 </div>
                 <div class="col-sm-4" align="right">
-                    <a href="{{ url('admin/question/create') }}" class="btn btn-primary">Tambah</a>      
+                    <a href="{{ url('admin/question/create') }}" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>      
                 </div>
               </div>
-              <table class="table table-bordered">
+              <table class="table table-bordered" id="table-data">
                 <thead>
-                  <th>No</th>
+                  <th>#</th>
                   <th>Group</th>
                   <th>Jenis</th>
                   <th>Pertanyaan</th>
@@ -36,19 +35,7 @@
                   <th>Aksi</th>
                 </thead>
                 <tbody>
-                  @foreach($data as $key=>$item)
-                  <tr>
-                    <td>{{ $key+1 }}</td>
-                    <td>{{ $item->question_group==1 ? "TWK" : $item->question_group==2 ? "TIU" : "TKP" }}</td>
-                    <td>{{ $item->question_type }}</td>
-                    <td>{{ $item->question }}</td>
-                    <td><button class="btn btn-info">lihat</button></td>
-                    <td>
-                      <button class="btn btn-warning">edit</button>
-                      <button class="btn btn-danger">hapus</button>
-                    </td>
-                  </tr>
-                  @endforeach
+                 
                 </tbody>
               </table>
             </div>
@@ -57,4 +44,61 @@
     </section>
     <!-- /.content -->
   </div>
+
+  <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <div class="text"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+@endsection
+@section('style')
+<link href="{{ url('/')}}/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+<link href="{{ url('/')}}/plugins/datatables/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css">
+@endsection
+@section('script')
+<script src="{{ url('/') }}/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="{{ url('/') }}/plugins/datatables/dataTables.bootstrap.js"></script>
+<script>
+    $(function() {
+        $('#table-data').DataTable({
+            processing : true,
+            serverSide : true,
+            ajax : '{{ url('admin/question/datatables') }}',
+            columns: [
+                { data: 'DT_RowIndex'},
+                { data: 'group'},
+                { data: 'jenis' },
+                { data: 'pertanyaan' },
+                { data: 'pilihan', orderable: false, searchable: false },
+                { data: 'action', orderable: false, searchable: false},
+            ]
+        });
+        $(document).on('click','button[name="view_pil"]',function(){
+          var $val = $(this).attr('id');
+          $('.text').text('loading . . .');
+          $.ajax({
+            type:"GET",
+            url:"{{ url('/') }}/admin/question/ajax/"+$val,
+            success: function(data) {
+              $('.text').text(data);
+            },
+          });
+        })
+    });
+</script>
 @endsection

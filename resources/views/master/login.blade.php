@@ -1,27 +1,5 @@
 @extends('layout.index')
 @section('content')
-<div class="navbar navbar-inverse set-radius-zero">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html">
-
-                <img src="assets/img/logo.png" />
-            </a>
-
-        </div>
-
-        <div class="left-div">
-            <i class="fa fa-user-plus login-icon" ></i>
-    </div>
-        </div>
-    </div>
-<!-- LOGO HEADER END-->
-
 <!-- MENU SECTION END-->
 <div class="content-wrapper">
     <div class="container">
@@ -41,8 +19,9 @@
                     <label>Password :  </label>
                     <input type="password" class="form-control" name="password"/>
                     <hr />
+                    <a href="forget"><span class="forget-password">Lupa password ?</span></a>
                     <button type="submit" class="btn btn-info">Masuk</button>
-                    <a href="{{ url('register') }}" class="btn btn-info">Daftar</a>
+                    <a href="{{ url('register') }}" class="btn btn-info">Buat Akun</a>
                 </form>
             </div>
             <div class="col-md-6">
@@ -63,24 +42,6 @@
                         </li>
                         <li>
                             Clean and light code used.
-                        </li>
-                    </ul>
-                   
-                </div>
-                <div class="alert alert-success">
-                     <strong> Instructions To Use:</strong>
-                    <ul>
-                        <li>
-                           Lorem ipsum dolor sit amet ipsum dolor sit ame
-                        </li>
-                        <li>
-                             Aamet ipsum dolor sit ame
-                        </li>
-                        <li>
-                           Lorem ipsum dolor sit amet ipsum dolor
-                        </li>
-                        <li>
-                             Cpsum dolor sit ame
                         </li>
                     </ul>
                    

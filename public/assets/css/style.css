@@ -34,16 +34,17 @@ body {
 
 .content-wrapper {
     margin-top: 40px;
-    min-height: 600px;
+    /* min-height: 600px; */
+    min-height: 454px;
     padding-bottom: 60px;
 }
 
 .page-head-line {
     font-weight: 900;
     padding-bottom: 20px;
-    border-bottom: 2px solid #F0677C;
+    border-bottom: 2px solid #3d5c77;
     text-transform: uppercase;
-    color: #F0677C;
+    color: #3d5c77;
     font-size: 20px;
     margin-bottom: 40px;
 }
@@ -70,7 +71,7 @@ margin-bottom: 20px;
 color: #fff;
 text-align: center;
 cursor:pointer;
-background-color:#F0677C;
+background-color:#3d5c77;
 -webkit-border-radius:50%;
     -moz-border-radius:50%;
 }
@@ -78,9 +79,9 @@ background-color:#F0677C;
    HEADER SECTION STYLES
  ============================================================ */
 header {
-    background-color: #F0677C;
-    color: #fff;
-    padding: 10px;
+    background-color: #49abff;
+    color: rgb(194, 194, 194);
+    padding: 50px;
     text-align: right;
 }
 
@@ -94,9 +95,30 @@ header {
     margin-bottom: 30px;
 }
 
+.right-div {
+    float: right;
+    position: absolute;
+    bottom: 5px;
+    right: 40px;
+}
+
 .navbar-brand {
     width: 250px;
-    padding-top: 30px;
+    font-size: large;
+    /* padding-top: 30px; */
+}
+
+/* CUSTOM */
+.forget-password {
+    float: right;
+    position: relative;
+    bottom: 35px;
+    font-size: smaller;
+    font-style: oblique;
+}
+.btn-forget {
+    top: 35px;
+    position: relative;
 }
 
 /* USER SETTINGS DIV */
@@ -181,7 +203,7 @@ header {
 }
 
 .navbar-inverse {
-    background-color: #C36464;
+    background-color: #49abff;
     border-color: transparent;
 }
 
@@ -200,7 +222,7 @@ footer {
     padding: 10px;
     color: #fff;
     font-size: 12px;
-    background-color: #C36464;
+    background-color: #49abff;
 }
 
     footer a, footer a:hover {

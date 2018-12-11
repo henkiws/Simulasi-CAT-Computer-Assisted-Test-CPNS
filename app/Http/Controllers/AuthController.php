@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
+use App\Models\UserDetail;
 
 class AuthController extends Controller
 {
@@ -14,8 +15,11 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(Request $request)
+    {   
+        if($request->session()->get('id')){
+            return redirect('profile');
+        }
         return view('master.login');
     }
 
@@ -36,13 +40,26 @@ class AuthController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        $this->validate($request,[
+            "nama"=>"required",
+            "email"=>"required",
+            "date_birth"=>"required",
+            "gender"=>"required",
+            "address"=>"required",
+        ]);
         $data=[
             "name"=>$request->nama,
             "email"=>$request->email,
             "password"=>bcrypt($request->password)
         ];
-        User::create($data);
+        $user = User::create($data);
+        UserDetail::create([
+            "user_id"=>$user->id,
+            "date_birth"=>$request->date_birth,
+            "gender"=>$request->gender,
+            "address"=>$request->address
+        ]);
         return redirect('/');
     }
 
@@ -50,11 +67,14 @@ class AuthController extends Controller
     {
         $data = User::where('email',$request->email)->first();
         if($data){
+            if($data->status == 0){
+                return redirect('/');
+            }
             if(Hash::check($request->password,$data->password)){
                 Session::put('id',$data->id);
                 Session::put('email',$data->email);
                 Session::put('status',TRUE);
-                return redirect('ujian');
+                return redirect('profile');
             }else{
                 return redirect('/');    
             }
@@ -65,6 +85,15 @@ class AuthController extends Controller
 
     public function logout(){
         Session::flush();
+        return redirect('/');
+    }
+
+    public function forget(){
+        return view('master.forget');
+    }
+
+    public function forget_password(Request $request){
+        // dd($request->email);
         return redirect('/');
     }
 
