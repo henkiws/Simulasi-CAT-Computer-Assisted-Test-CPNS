@@ -47,6 +47,9 @@ class UserController extends Controller
                 ->editColumn('status', function($select) {
                     return $select->status == 1 ? "<label class='label label-success'>Active</label>" : "<label class='label label-danger'>Not Active</label>";
                 })
+                ->editColumn('role', function($select) {
+                    return $select->getRoleNames();
+                })
                 ->addIndexColumn()
                 ->rawColumns(['status']);
 

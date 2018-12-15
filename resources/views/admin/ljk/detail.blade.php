@@ -3,34 +3,32 @@
 <div class="content-wrapper">
     <section class="content-header">
       <h6>
-          <ol class="breadcrumb">
-              <li><a href="#"><i class="fa fa-dashboard"></i> Master</a></li>
-              <li class="active">User</li>
-          </ol>
-      </h6>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Master</a></li>
+            <li><a href="{{ url('admin/ljk') }}">Ljk</a></li>
+            <li class="active">Detail</li>
+        </ol>
+    </h6>
     </section>
     <!-- Main content -->
     <section class="content">
             <div class="box box-default color-palette-box">
             <div class="box-header with-border">
-              <h3 class="box-title"><i class="fa fa-tag"></i> Users</h3>
+              <h3 class="box-title"><i class="fa fa-tag"></i> Ljk</h3>
             </div>
             <div class="box-body">
-                <table class="table table-bordered" id="table-data">
-                    <thead>
-                      <th>#</th>
-                      <th>Nama</th>
-                      <th>Email</th>
-                      <th>Jenis Kelamin</th>
-                      <th>Tanggal Lahir</th>
-                      <th>Alamat</th>
-                      <th>Role</th>
-                      <th>Status</th>
-                    </thead>
-                    <tbody>
-                     
-                    </tbody>
-                  </table>
+              <table class="table table-bordered" id="table-data">
+                <thead>
+                  <th>#</th>
+                  <th width="400">Question</th>
+                  <th width="300">Choise</th>
+                  <th>Answer</th>
+                  <th>Skor</th>
+                </thead>
+                <tbody>
+                 
+                </tbody>
+              </table>
             </div>
             <!-- /.box-body -->
           </div>
@@ -50,16 +48,13 @@
         $('#table-data').DataTable({
             processing : true,
             serverSide : true,
-            ajax : '{{ url('admin/user/datatables') }}',
+            ajax : '{{ url('admin/ljk/detail/'.$id.'/datatables') }}',
             columns: [
                 { data: 'DT_RowIndex'},
-                { data: 'name'},
-                { data: 'email' },
-                { data: 'gender' },
-                { data: 'date_birth' },
-                { data: 'address' },
-                { data: 'role' },
-                { data: 'status' },
+                { data: 'question'},
+                { data: 'choise' },
+                { data: 'answer' },
+                { data: 'skor' }
             ]
         });
     });

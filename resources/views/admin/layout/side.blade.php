@@ -13,11 +13,24 @@
         </a>
         <ul class="treeview-menu">
           <li><a href="{{ url('admin/question') }}"><i class="fa fa-circle-o"></i> Question</a></li>
-          {{-- <li><a href=""><i class="fa fa-circle-o"></i> Option</a></li> --}}
           <li><a href="{{ url('admin/user') }}"><i class="fa fa-circle-o"></i> User</a></li>
         </ul>
       </li>
-      <li><a href="{{ url('admin/live') }}"><i class="fa fa-book"></i> <span>Live Skor</span></a></li>
+      <li><a href="{{ url('admin/ljk') }}"><i class="fa fa-book"></i> <span>LJK</span></a></li>
+      <hr>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-files-o"></i>
+          <span>Permission</span>
+          <span class="pull-right-container">
+            <span class="label label-primary pull-right">4</span>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="{{ url('admin/role') }}"><i class="fa fa-circle-o"></i> Role</a></li>
+          <li><a href="{{ url('admin/permission') }}"><i class="fa fa-circle-o"></i> Permission Name</a></li>
+        </ul>
+      </li>
       {{-- <li class="active treeview">
         <a href="#">
           <i class="fa fa-dashboard"></i> <span>Dashboard</span>

@@ -44,6 +44,20 @@ Route::namespace('admin')->group(function(){
         Route::get('user','UserController@index');
         Route::get('user/datatables','UserController@datatables');
 
-        Route::get('live','LiveScoreController@index');
+        Route::get('ljk','LjkController@index');
+        Route::get('ljk/datatables','LjkController@datatables');
+        Route::get('ljk/detail/{id}','LjkController@detail');
+        Route::get('ljk/detail/{id}/datatables','LjkController@detail_datatables');
+
+        Route::get('role','PermissionController@index_role');
+        Route::get('permission','PermissionController@index_permission');
+        Route::post('role','PermissionController@store_role');
+        Route::post('permission','PermissionController@store_permission');
+        Route::get('permission/datatables','PermissionController@datatables');
+        Route::get('role/{id}','PermissionController@show_role');
+        Route::post('role/assign','PermissionController@role_assign');
+        Route::get('user/{user_id}/role/{role}','PermissionController@user_assign_role');
+        Route::delete('permission/{id}','PermissionController@user_assign_role_remove');
+        
     });
 });

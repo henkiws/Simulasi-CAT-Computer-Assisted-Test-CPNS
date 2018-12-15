@@ -11,4 +11,8 @@ class Ljk extends Model
     protected $fillable = [
         'user_id', 'skor_twk', 'skor_tiu', 'skor_tkp', 'skor_total', 'status', 'keterangan', 'finish_at'
     ];
+
+    public function user(){
+        return $this->belongsto(User::class);
+    }
 }

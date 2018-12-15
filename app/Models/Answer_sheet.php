@@ -21,4 +21,8 @@ class Answer_sheet extends Model
         return $this->belongsTo(Option::class);
     }
 
+    function answer(){
+        return $this->belongsTo(Option::class,'answer_id','id');
+    }
+
 }

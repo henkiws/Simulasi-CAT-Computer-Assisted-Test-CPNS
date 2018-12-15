@@ -53,10 +53,10 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+          <h4 class="modal-title">Answer</h4>
         </div>
         <div class="modal-body">
-          <div class="text"></div>
+          <div id="text"></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -90,12 +90,26 @@
         });
         $(document).on('click','button[name="view_pil"]',function(){
           var $val = $(this).attr('id');
-          $('.text').text('loading . . .');
           $.ajax({
             type:"GET",
             url:"{{ url('/') }}/admin/question/ajax/"+$val,
+            beforeSend: function(){
+              $('#text').html('Loading ...');
+            },
             success: function(data) {
-              $('.text').text(data);
+              $('#text').html('');
+              var obj = jQuery.parseJSON(data);
+              console.log(obj);
+              var list = $("#text").append('<ol type="A"></ol>').find('ol');
+              $.each(obj, function(i, item){
+                if(item.answer == 5){
+                  list.append("<li><strong><font color='green'>"+item.choise+"</font></strong></li>");
+                }else{
+                  list.append("<li>"+item.choise+"</li>");
+                }
+              })
+              // console.log(data);
+              $('.text').html(data);
             },
           });
         })
