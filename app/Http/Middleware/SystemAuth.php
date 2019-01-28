@@ -15,8 +15,13 @@ class SystemAuth
      */
     public function handle($request, Closure $next)
     {   
-        if(!$request->session()->get('status')){
-            return redirect('/');
+        if(!$request->session()->get('id')){
+            $user=User::find($request->session()->get('id'));
+            if($user->hasRole('superadmin')){
+                return redirect('admin/dashboard');
+            }elseif($user->hasRole('user')){
+                return redirect('profile');
+            }
         }
         return $next($request);
     }

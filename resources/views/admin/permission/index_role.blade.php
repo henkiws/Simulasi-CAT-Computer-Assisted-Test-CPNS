@@ -33,7 +33,7 @@
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->guard_name }}</td>
                     <td>
-                      <button name="view" data="{{ $item->id }}" class="btn btn-info">view Permission</button>
+                      <button name="view" data="{{ $item->name }}" class="btn btn-info">view Permission</button>
                       <a href="{{ url('admin/role/'.$item->id.'') }}" class="btn btn-warning">assign Permission</button>
                     </td>
                   </tr>
@@ -43,18 +43,9 @@
             </div>
             <!-- /.box-body -->
           </div>
-          <div class="box box-default color-palette-box">
+          <div id="body-result" class="box box-default color-palette-box" style="display:none;">
               <div class="box-body">
-             <table id="result" class="table table-bordered">
-               <thead>
-                 <tr>
-                   <th>#</th>
-                   <th>Name</th>
-                   <th>Guard</th>
-                 </tr>
-               </thead>
-               <tbody></tbody>
-             </table>
+                <div id="result"></div>
               </div>
           </div>
     </section>
@@ -97,28 +88,31 @@
 </div>
 
 @endsection
-
-@section('style')
-<link href="{{ url('/')}}/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
-<link href="{{ url('/')}}/plugins/datatables/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css">
-@endsection
 @section('script')
-<script src="{{ url('/') }}/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="{{ url('/') }}/plugins/datatables/dataTables.bootstrap.js"></script>
 <script>
     $(function() {
-        $('button[name="assign"]').click(function(){
-          var id = $(this).attr('data');
-            $('#result').DataTable({
-              processing : true,
-              serverSide : true,
-              ajax : '{{ url('admin/role') }}/'+id+'/datatables',
-              columns: [
-                  { data: 'DT_RowIndex'},
-                  { data: 'name'},
-                  { data: 'guard_name' },
-              ]
-            })
+        $('button[name="view"]').click(function(){
+          var $val = $(this).attr('data');
+          $.ajax({
+            type:"POST",
+            url:"{{ url('/') }}/admin/permission/show-all",
+            data: { _token:'{{ csrf_token() }}', name: $val },
+            beforeSend: function(){
+              $('#body-result').show();
+              $('#result').html('Loading ...');
+            },
+            success: function(data) {
+              $('#result').html('<h4>'+$val+'</h4>');
+              var list = $("#result").append('<table class="table table-bordered"></table>').find('table');
+              list.append("<tr><th>#</th><th>Permission Name</th></tr>");
+              if(data['data'] == ''){
+                list.append("<tr><td colspan=\"2\"><center>Data Not Found !</center></td></tr>");
+              }
+              $.each(data['data'], function(i, item, seq=i+1){
+                  list.append("<tr><td>"+parseInt(seq)+"</td><td>"+item.name+"</td></tr>");
+              })
+            },
+          })
         })
     })
 </script>

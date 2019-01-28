@@ -77,4 +77,11 @@ class PermissionController extends Controller
       return back();
    }
 
+   function show_permission(Request $request)
+   {  
+      $role = Role::findByName($request->name);
+      $data = $role->permissions()->get();
+      return response()->json(["data"=>$data],200);
+   }
+
 }

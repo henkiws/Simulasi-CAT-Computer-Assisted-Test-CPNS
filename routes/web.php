@@ -19,6 +19,7 @@ Route::post('register/store', 'AuthController@store');
 Route::post('login', 'AuthController@login');
 Route::get('logout', 'AuthController@logout');
 
+Route::group(['middleware' => ['role:user']], function () {
 Route::middleware('system.auth')->group(function(){
     Route::get('profile','QuestionController@profile');
     Route::get('ujian','QuestionController@index');
@@ -28,8 +29,10 @@ Route::middleware('system.auth')->group(function(){
     Route::post('answer','QuestionController@answer');
     Route::post('store','QuestionController@store');
 });
+});
 
 //superadmin
+Route::group(['middleware' => ['role:superadmin']], function () {
 Route::namespace('admin')->group(function(){
     Route::prefix('admin')->group(function(){
         Route::get('dashboard','DashboardController@index');
@@ -58,6 +61,8 @@ Route::namespace('admin')->group(function(){
         Route::post('role/assign','PermissionController@role_assign');
         Route::get('user/{user_id}/role/{role}','PermissionController@user_assign_role');
         Route::delete('permission/{id}','PermissionController@user_assign_role_remove');
+        Route::post('permission/show-all','PermissionController@show_permission');
         
     });
+});
 });

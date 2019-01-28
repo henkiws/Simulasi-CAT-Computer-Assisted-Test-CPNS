@@ -17,9 +17,6 @@ class AuthController extends Controller
      */
     public function index(Request $request)
     {   
-        if($request->session()->get('id')){
-            return redirect('profile');
-        }
         return view('master.login');
     }
 
@@ -54,6 +51,7 @@ class AuthController extends Controller
             "password"=>bcrypt($request->password)
         ];
         $user = User::create($data);
+        $user->assignRole('user');
         UserDetail::create([
             "user_id"=>$user->id,
             "date_birth"=>$request->date_birth,
@@ -74,7 +72,11 @@ class AuthController extends Controller
                 Session::put('id',$data->id);
                 Session::put('email',$data->email);
                 Session::put('status',TRUE);
-                return redirect('profile');
+                if($data->hasRole('superadmin')){
+                    return redirect('admin/dashboard');
+                }elseif($data->hasRole('user')){
+                    return redirect('profile');
+                }
             }else{
                 return redirect('/');    
             }

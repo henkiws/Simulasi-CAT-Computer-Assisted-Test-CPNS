@@ -7,9 +7,6 @@
         <a href="#">
           <i class="fa fa-files-o"></i>
           <span>Master</span>
-          <span class="pull-right-container">
-            <span class="label label-primary pull-right">4</span>
-          </span>
         </a>
         <ul class="treeview-menu">
           <li><a href="{{ url('admin/question') }}"><i class="fa fa-circle-o"></i> Question</a></li>
@@ -22,9 +19,6 @@
         <a href="#">
           <i class="fa fa-files-o"></i>
           <span>Permission</span>
-          <span class="pull-right-container">
-            <span class="label label-primary pull-right">4</span>
-          </span>
         </a>
         <ul class="treeview-menu">
           <li><a href="{{ url('admin/role') }}"><i class="fa fa-circle-o"></i> Role</a></li>

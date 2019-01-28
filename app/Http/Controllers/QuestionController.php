@@ -90,10 +90,12 @@ class QuestionController extends Controller
     public function store(Request $request){
         $check = Ljk::where('user_id',$request->id)->orderBy('created_at','DESC')->first();
         
-        if($check->status == 0){
-            return redirect('ujian');
+        if($check){
+            if($check->status == 0){
+                return redirect('ujian');
+            }
         }
-
+        
         $ljk = LJK::create([
             "user_id"=>$request->id
         ]);
