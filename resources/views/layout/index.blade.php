@@ -54,16 +54,16 @@
                 </div>
                 <div style="position:absolute; z-index:100; top:5px; right: 40% ;background-color:rgba(255,255,255,0.9); border-style:solid; border-width:2px;" class="panel">
                     <div class="col-xs-2 text-center">
-                        <strong style="color:#337ab7">Batas Waktu<br>90</strong>
+                        <strong style="color:#337ab7">Batas Waktu<br>90 Menit</strong>
                     </div>
                     <div class="col-xs-2 text-center">
                         <strong style="color:#337ab7">Jumlah Soal<br><span id="jum_soal">100</span></strong>
                     </div>
                     <div class="col-xs-2 text-center">
-                        <strong><span style="color:#090">Soal Dijawab<br><span id="soal_dijawab">2</span></span></strong>
+                        <strong><span style="color:#090">Soal Dijawab<br><span id="soal_dijawab">0</span></span></strong>
                     </div>
                     <div class="col-xs-2 text-center">
-                        <strong><span style="color:#F00">Belum Dijawab<br><span id="soal_belum_dijawab">98</span></span></strong>
+                        <strong><span style="color:#F00">Belum Dijawab<br><span id="soal_belum_dijawab">0</span></span></strong>
                     </div>
                     <div class="col-xs-4 text-center" style=" padding:17px">
                         <button type="button" class="btn btn-default" id="btnSelesaiUjian">Selesai Ujian</button>

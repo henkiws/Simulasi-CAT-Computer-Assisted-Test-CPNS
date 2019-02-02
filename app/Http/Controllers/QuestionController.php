@@ -22,7 +22,8 @@ class QuestionController extends Controller
         $sheet = Answer_sheet::where('ljk_id',$ljk->id)->get();
         // $question = Question::with(['option'])->where('id',$data[0]->question_id)->first();
         Session::put('exam',true);
-        return view('master.question',compact('data','sheet'));
+        $date = strtotime( $ljk->created_at );
+        return view('master.question',compact('data','sheet','date'));
     }
 
     public function ajax(Request $request){

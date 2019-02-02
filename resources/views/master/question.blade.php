@@ -47,21 +47,31 @@
                             <tbody>
                                 Lembar Jawaban
                                 {{ $data->total() }}
-                                <?php $end=1; ?>
+                                <?php 
+                                    $end=1;
+                                    $jawab_tot=0;
+                                    $blm_jawab_tot=0;
+                                ?>
                                 @foreach(range(1,20) as $num)
                                 <?php
                                     $start= $end==1 ? $end : $end+1;
                                     $end=$num*5;
                                 ?>
                                 <tr>
+                                    <?php
+                                        $jawab = 0;
+                                        $blm_jawab = 0;
+                                    ?>
                                     @for($b=$start;$b<=$end;$b++)
                                         @if($sheet[$b-1]->answer_id)
+                                        <?php $jawab++; ?>
                                         <td><a name="ljk_num" id="ljk_{{ $b }}" data="{{ $b }}" href="#" class="nav-soal text-center" style="background-color: green;">{{ $b }}</a></td>
                                         @else
                                         <td><a name="ljk_num" id="ljk_{{ $b }}" data="{{ $b }}" href="#" class="nav-soal text-center" style="background-color: red;">{{ $b }}</a></td>
                                         @endif
                                     @endfor
                                 </tr>
+                                <?php $jawab_tot+=$jawab; ?>
                                 @endforeach
                             </tbody>
                         </table>                   
@@ -72,4 +82,12 @@
     </div>
 </div>
 <!-- CONTENT-WRAPPER SECTION END-->
+@endsection
+
+@section('script')
+    <script>
+        var counter = {{ $jawab_tot }};
+        var deadline = new Date(Date.parse(new Date({{ $date.'000' }})) + 1.5 * 60 * 60 * 1000);
+        initializeClock('clockdiv', deadline);
+    </script>
 @endsection
