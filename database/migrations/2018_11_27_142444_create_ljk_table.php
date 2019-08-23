@@ -16,11 +16,12 @@ class CreateLjkTable extends Migration
         Schema::create('ljk', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->integer('skor_twk');
-            $table->integer('skor_tiu');
-            $table->integer('skor_tkp');
-            $table->integer('skor_total');
+            $table->integer('skor_twk')->default(0);
+            $table->integer('skor_tiu')->default(0);
+            $table->integer('skor_tkp')->default(0);
+            $table->integer('skor_total')->default(0);
             $table->integer('status')->comment('0:belum selesai 1:selesai');
+            $table->string('keterangan')->comment('0:belum selesai 1:selesai')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

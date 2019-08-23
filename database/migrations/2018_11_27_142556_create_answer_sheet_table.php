@@ -17,8 +17,10 @@ class CreateAnswerSheetTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('ljk_id');
             $table->unsignedInteger('question_id');
+            $table->integer('question_id')->nullable();
             $table->unsignedInteger('option_id')->comment('jawaban benar');
             $table->unsignedInteger('answer_id')->comment('jawaban user')->nullable();
+            $table->integer('value')->nullable();
             $table->foreign('ljk_id')->references('id')->on('ljk')->onDelete('cascade');
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
             $table->foreign('option_id')->references('id')->on('options')->onDelete('cascade');

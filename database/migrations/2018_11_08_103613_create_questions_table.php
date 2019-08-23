@@ -18,6 +18,8 @@ class CreateQuestionsTable extends Migration
             $table->text('question');
             $table->string('question_type');
             $table->tinyinteger('question_group')->comment('1:TWK; 2:TIU; 3:TKP');
+            $table->string('information')->nullable();
+            $table->string('pembahasan')->nullable();
             $table->timestamps();
             $table->softdeletes();
         });

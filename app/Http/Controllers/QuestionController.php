@@ -20,6 +20,7 @@ class QuestionController extends Controller
         }
         $data = Answer_sheet::where('ljk_id',$ljk->id)->select('id','question_id','answer_id','ljk_id')->paginate(1);
         $sheet = Answer_sheet::where('ljk_id',$ljk->id)->get();
+        // dd($sheet);
         // $question = Question::with(['option'])->where('id',$data[0]->question_id)->first();
         Session::put('exam',true);
         $date = strtotime( $ljk->created_at );
@@ -90,7 +91,6 @@ class QuestionController extends Controller
 
     public function store(Request $request){
         $check = Ljk::where('user_id',$request->id)->orderBy('created_at','DESC')->first();
-        
         if($check){
             if($check->status == 0){
                 return redirect('ujian');
