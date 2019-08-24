@@ -26,22 +26,27 @@
             </div>
             <div class="col-md-6">
                 <div class="alert alert-info">
-                    This is a free bootstrap admin template with basic pages you need to craft your project. 
-                    Use this template for free to use for personal and commercial use.
+                    Silahkan melakukan login kedalam sistem CAT
                     <br />
-                     <strong> Some of its features are given below :</strong>
+                     <strong>Apa Yang Kami Tawarkan ?</strong>
                     <ul>
                         <li>
-                            Responsive Design Framework Used
+                            Data soal yang banyak
                         </li>
                         <li>
-                            Easy to use and customize
+                            Tampilan kami buat semirip mungkin dengan aplikasi CAT BKN
                         </li>
                         <li>
-                            Font awesome icons included
+                            Anda akan mengetahui hasil ujian langsung
                         </li>
                         <li>
-                            Clean and light code used.
+                            Tiap user berhak mendapat TRIAL untuk 2 kali test
+                        </li>
+                        <li>
+                            Kami beri trial untuk 2 kali test
+                        </li>
+                        <li>
+                            Aplikasi masih dalam tahap beta
                         </li>
                     </ul>
                    

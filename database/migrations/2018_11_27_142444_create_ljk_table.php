@@ -24,6 +24,7 @@ class CreateLjkTable extends Migration
             $table->string('keterangan')->comment('0:belum selesai 1:selesai')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+            $table->timestamps('finish_at');
         });
     }
 

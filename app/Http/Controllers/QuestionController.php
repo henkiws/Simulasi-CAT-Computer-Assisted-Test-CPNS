@@ -128,10 +128,12 @@ class QuestionController extends Controller
         }
         // dd($data);
         
-        Answer_sheet::insert($data);
+        $save = Answer_sheet::insert($data);
         // dd($data);
         // roolback
-        return redirect('ujian');
+        if($save){
+            return redirect('ujian');
+        }
     }
 
     public function skor(){

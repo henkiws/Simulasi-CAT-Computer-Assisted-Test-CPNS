@@ -43,6 +43,7 @@ Route::namespace('admin')->group(function(){
         Route::get('question/create','MasterQuestionController@create');
         Route::post('question/store','MasterQuestionController@store');
         Route::delete('question/{id}','MasterQuestionController@destroy');
+        Route::post('question/import','MasterQuestionController@import');
 
         Route::get('user','UserController@index');
         Route::get('user/datatables','UserController@datatables');

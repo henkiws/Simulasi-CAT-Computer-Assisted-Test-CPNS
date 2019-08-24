@@ -105,7 +105,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    &copy; 2018 | Henki Wisnu Subakti
+                    &copy; 2019 | henkiws.github.io | Version 1.0.0
                 </div>
 
             </div>

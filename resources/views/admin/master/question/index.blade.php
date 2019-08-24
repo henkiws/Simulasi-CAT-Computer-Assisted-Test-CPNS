@@ -19,10 +19,14 @@
             <div class="box-body">
               <div class="row" style="margin-bottom:10px;">
                 <div class="col-sm-8">
-                    
+                  <form method="post" action="{{ url('admin/question/import') }}" enctype='multipart/form-data'>
+                    {{ csrf_field() }}
+                    <input type="file" name="file"  required="required">
+                    <button type="submit" class="btn btn-default">Import Excel</button>
+                  </form>
                 </div>
                 <div class="col-sm-4" align="right">
-                    <a href="{{ url('admin/question/create') }}" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>      
+                  <a href="{{ url('admin/question/create') }}" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>      
                 </div>
               </div>
               <table class="table table-bordered" id="table-data">

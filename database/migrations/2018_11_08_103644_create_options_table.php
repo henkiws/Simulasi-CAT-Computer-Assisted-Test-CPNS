@@ -17,7 +17,7 @@ class CreateOptionsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('question_id');
             $table->string('choise');
-            $table->tinyInteger('answer')->comment('0:false; 1:true');
+            $table->tinyInteger('answer')->comment('skor')->default(0);;
             $table->timestamps();
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
         });

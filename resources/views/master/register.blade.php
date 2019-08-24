@@ -33,40 +33,51 @@
             </div>
             <div class="col-md-6">
                 <div class="alert alert-info">
-                    This is a free bootstrap admin template with basic pages you need to craft your project. 
-                    Use this template for free to use for personal and commercial use.
+                    Silahkan melakukan pendaftaran kedalam sistem CAT
                     <br />
-                     <strong> Some of its features are given below :</strong>
+                     <strong><i>Apa Yang Kami Tawarkan ?</i></strong>
                     <ul>
                         <li>
-                            Responsive Design Framework Used
+                            <b>Pastikan alamat email anda benar, untuk aktivasi akun</b><br>
+                            <i>Apabila tidak mendapatkan email, silahkan WA ke 085725626073 dengan format: nama_email_tanggal registrasi, contoh: budi santoso_budi@mail.com_1-sep-2019</i>
                         </li>
                         <li>
-                            Easy to use and customize
+                            Data soal yang banyak
                         </li>
                         <li>
-                            Font awesome icons included
+                            Tampilan kami buat semirip mungkin dengan aplikasi CAT BKN
                         </li>
                         <li>
-                            Clean and light code used.
+                            Anda akan mengetahui hasil ujian langsung
+                        </li>
+                        <li>
+                            Tiap user berhak mendapat TRIAL untuk 2 kali test
+                        </li>
+                        <li>
+                            Kami beri trial untuk 2 kali test
+                        </li>
+                        <li>
+                            Aplikasi masih dalam tahap beta
                         </li>
                     </ul>
-                   
                 </div>
                 <div class="alert alert-success">
-                     <strong> Instructions To Use:</strong>
+                     <strong>Petunjuk Penggunaan :</strong>
                     <ul>
                         <li>
-                           Lorem ipsum dolor sit amet ipsum dolor sit ame
+                            Silahkan isi form pendaftaran disamping dengan benar!
                         </li>
                         <li>
-                             Aamet ipsum dolor sit ame
+                            Kami akan mengirimkan email aktivasi akun
                         </li>
                         <li>
-                           Lorem ipsum dolor sit amet ipsum dolor
+                            Setelah diaktivasi anda dapat melakukan login dengan email dan password anda
                         </li>
                         <li>
-                             Cpsum dolor sit ame
+                            Anda dapat melakukan test dengan banyak soal yang telah kami sediakan
+                        </li>
+                        <li>
+                            Riwayat test anda dapat anda lihat dihalaman profile user
                         </li>
                     </ul>
                    

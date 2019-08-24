@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Question;
 use App\Models\Option;
 use Yajra\DataTables\Facades\DataTables;
+use App\Imports\QuestionsImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MasterQuestionController extends Controller
 {
@@ -173,6 +175,17 @@ class MasterQuestionController extends Controller
     {
         Question::find($id)->delete();
         Option::where('question_id',$id)->delete();
+        return redirect('admin/question');
+    }
+
+    public function import(Request $request){
+        // $this->validate($request, [
+        //     'file' => 'required|mimes:csv,xls,xlsx'
+        // ]);
+        $file = $request->file('file');
+        $fileName = rand().$file->getClientOriginalName();
+        $file->move('file_',$fileName);
+        $result = Excel::import(new QuestionsImport, public_path('/file_/'.$fileName));
         return redirect('admin/question');
     }
 }
