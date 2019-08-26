@@ -18,6 +18,7 @@ Route::post('forget', 'AuthController@forget_password');
 Route::post('register/store', 'AuthController@store');
 Route::post('login', 'AuthController@login');
 Route::get('logout', 'AuthController@logout');
+Route::get('auth/active/{key}', 'AuthController@active');
 
 Route::group(['middleware' => ['role:user']], function () {
 Route::middleware('system.auth')->group(function(){
