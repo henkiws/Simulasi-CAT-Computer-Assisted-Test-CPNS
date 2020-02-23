@@ -1,18 +1,22 @@
-## Car Rental
+## Simulasi CAT CPNS
 
+1. Halaman Login Aplikasi
 ![](screenshoot/login.png)
 
-Aplikasi Rental Mobil berbasis web dibangun dengan laravel 5.8 dan Mysql
+2. Halaman Profile User
+![](screenshoot/profile.png)
 
-## Fiitur
+3. Halaman Ujian User
+![](screenshoot/exam.png)
 
-1. Management Pengguna
-2. Management Mobil
-3. Management Customer
-4. Management Transaksi
-5. Management List Transaksi Aktif
-5. Management History Transaksi
-6. Management Setting Aplikasi
-7. Management Print Kuitansi Transaksi
-8. Management Export Data Transaksi Via Excel
-9. Integrasi dengan website (optional)
+4. Halaman Master CAT
+![](screenshoot/master.png)
+
+Aplikasi Simulasi CAT CPNS berbasis web menggunakan laravel 5.8 dan Mysql
+
+## Cara Instalasi
+1. git clone origin 
+2. composer install
+3. php artisan db:seed
+4. Jalankan dengan perintah 'php artisan serve'
+5. Login Akun : - Admin : superadmin@mail.com (rahasia) - User : user@mail.com (rahasia)
