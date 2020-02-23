@@ -69,7 +69,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $data = User::where('email',$request->email)->first();
-        if($data){
+        if(isset($data)){
             if($data->status == 0){
                 return redirect('/');
             }
