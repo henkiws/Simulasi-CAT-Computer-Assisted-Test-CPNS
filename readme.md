@@ -19,6 +19,6 @@ Aplikasi Simulasi CAT CPNS berbasis web menggunakan laravel dan MySQL. Dilengkap
 2. composer install
 3. php artisan db:seed
 4. Jalankan dengan perintah 'php artisan serve'
-5. Login Akun : - Admin : superadmin@mail.com (rahasia) - User : user@mail.com (rahasia)
+5. Login Akun : - Admin : superadmin@mail.com (admin123) - User : user@mail.com (admin123)
 
 Selamat Mencoba :))

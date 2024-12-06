@@ -32,8 +32,8 @@ Route::middleware('system.auth')->group(function(){
 });
 });
 
-//superadmin
-Route::group(['middleware' => ['role:superadmin']], function () {
+//admin
+Route::group(['middleware' => ['role:admin']], function () {
 Route::namespace('admin')->group(function(){
     Route::prefix('admin')->group(function(){
         Route::get('dashboard','DashboardController@index');

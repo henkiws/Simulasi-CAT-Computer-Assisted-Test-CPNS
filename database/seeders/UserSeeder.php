@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
@@ -19,7 +21,7 @@ class UserSeeder extends Seeder
     {
         $users = [
             ['nama'=>'user'],
-            ['nama'=>'superadmin']
+            ['nama'=>'admin']
         ];
 
         foreach($users as $key=>$row){
@@ -34,7 +36,7 @@ class UserSeeder extends Seeder
             $user = User::create([
                 'name'=>$name,
                 'email'=>$name.'@mail.com',
-                'password'=>Hash::make('rahasia'),
+                'password'=>bcrypt('admin123'),
                 'status'=>1
             ]);
 

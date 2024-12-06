@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use App\Models\UserDetail;
 use App\Events\RegisterEvent;
+use Auth;
 
 class AuthController extends Controller
 {
@@ -73,11 +74,18 @@ class AuthController extends Controller
             if($data->status == 0){
                 return redirect('/');
             }
-            if(Hash::check($request->password,$data->password)){
+
+            $userdata = array(
+                'email' => $request->get('email') ,
+                'password' => $request->get('password')
+              );
+
+            // if(Hash::check($request->password,$data->password)){
+            if (Auth::attempt($userdata)) {
                 Session::put('id',$data->id);
                 Session::put('email',$data->email);
                 Session::put('status',TRUE);
-                if($data->hasRole('superadmin')){
+                if($data->hasRole('admin')){
                     return redirect('admin/dashboard');
                 }elseif($data->hasRole('user')){
                     return redirect('profile');
