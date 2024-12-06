@@ -9,6 +9,7 @@ use App\Models\Option;
 use Yajra\DataTables\Facades\DataTables;
 use App\Imports\QuestionsImport;
 use Maatwebsite\Excel\Facades\Excel;
+use DB;
 
 class MasterQuestionController extends Controller
 {
@@ -28,7 +29,7 @@ class MasterQuestionController extends Controller
             $select = Question::all();
             $data = Datatables::of($select)
                 ->addColumn('action', function($select) {
-                    $action = '<a class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                    $action = '<a class="btn btn-warning" href="'.url('admin/question/'.$select->id.'/edit').'"><i class="fa fa-edit"></i></a>
                                 <form method="post" action="'.url('admin/question/'. $select->id).'" onclick="return confirm(\'Are you sure delete this data?\')">
                                     '.csrf_field().'
                                     <input type="hidden" name="_method" value="DELETE" />
@@ -83,52 +84,60 @@ class MasterQuestionController extends Controller
      */
     public function store(Request $request)
     {   
-        if($request->sumber_soal == 1){
-            $question=$request->question_text;
-        }else{
-            $image = $request->question_img;
-            $question = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME).'_'.sha1($image->getClientOriginalName() . time()) . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path() . '/img/question';
-            if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 666, true);
-            }
-            $image->move($destinationPath,$question);
-        }
-
-        $data=[
-            "question"=>$question,
-            "question_type"=>$request->question_type,
-            "question_group"=>$request->question_group,
-            "istext"=>$request->sumber_soal,
-            "information"=>$request->information,
-        ];
-        $dt = Question::create($data);
-        foreach(range(0,9) as $key=>$val){
-            if($request->sumber_jawaban==1){
-                if($key%2==0){
-                    $arr=$key/2;
-                    $data=[
-                        "question_id"=>$dt->id,
-                        "choise"=>$request->choise[$arr],
-                        "answer"=>$request->answer[$key] == null ? 0 : $request->answer[$key],
-                        "istext"=>$request->sumber_jawaban
-                    ];
-                    Option::create($data);
-                }
+        DB::beginTransaction();
+        try {
+            if($request->sumber_soal == 1){
+                $question=$request->question_text;
             }else{
-                if($key%2==1){
-                    $data=[
-                        "question_id"=>$dt->id,
-                        "choise"=>$request->choise[$key],
-                        "answer"=>$request->answer[$key] == null ? 0 : $request->answer[$key],
-                        "istext"=>$request->sumber_jawaban
-                    ];
-                    Option::create($data);
+                $image = $request->question_img;
+                $question = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME).'_'.sha1($image->getClientOriginalName() . time()) . '.' . $image->getClientOriginalExtension();
+                $destinationPath = public_path() . '/img/question';
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 666, true);
                 }
+                $image->move($destinationPath,$question);
             }
-            
+
+            $data=[
+                "question"=>$question,
+                "question_type"=>$request->question_type,
+                "question_group"=>$request->question_group,
+                "istext"=>$request->sumber_soal,
+                "information"=>$request->information,
+            ];
+            $dt = Question::create($data);
+            foreach(range(0,9) as $key=>$val){
+                if($request->sumber_jawaban==1){
+                    if($key%2==0){
+                        $arr=$key/2;
+                        $data=[
+                            "question_id"=>$dt->id,
+                            "choise"=>$request->choise[$arr],
+                            "answer"=>$request->answer[$key] == null ? 0 : $request->answer[$key],
+                            "istext"=>$request->sumber_jawaban
+                        ];
+                        Option::create($data);
+                    }
+                }else{
+                    if($key%2==1){
+                        $data=[
+                            "question_id"=>$dt->id,
+                            "choise"=>$request->choise[$key],
+                            "answer"=>$request->answer[$key] == null ? 0 : $request->answer[$key],
+                            "istext"=>$request->sumber_jawaban
+                        ];
+                        Option::create($data);
+                    }
+                }
+                
+            }
+            DB::commit();
+            return redirect('admin/question/create');
+        }catch(\Exception $e){
+            DB::rollback();
+            dd($e->getMessage());
+            return redirect('admin/question/create');
         }
-        return redirect('admin/question/create');
     }
 
     /**
@@ -150,7 +159,11 @@ class MasterQuestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $question = Question::find($id);
+        $data = [
+            "question" => $question
+        ];
+        return view('admin.master.question.form',$data);
     }
 
     /**

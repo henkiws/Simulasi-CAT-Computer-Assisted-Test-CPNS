@@ -41,6 +41,7 @@ Route::namespace('admin')->group(function(){
         Route::get('question','MasterQuestionController@index');
         Route::get('question/datatables','MasterQuestionController@datatables');
         Route::get('question/ajax/{id}','MasterQuestionController@ajax');
+        Route::get('question/{id}/edit','MasterQuestionController@edit');
         Route::get('question/create','MasterQuestionController@create');
         Route::post('question/store','MasterQuestionController@store');
         Route::delete('question/{id}','MasterQuestionController@destroy');

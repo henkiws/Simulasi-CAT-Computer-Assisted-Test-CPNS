@@ -18,15 +18,9 @@
             </div>
             <div class="box-body">
               <div class="row" style="margin-bottom:10px;">
-                <div class="col-sm-8">
-                  <form method="post" action="{{ url('admin/question/import') }}" enctype='multipart/form-data'>
-                    {{ csrf_field() }}
-                    <input type="file" name="file"  required="required">
-                    <button type="submit" class="btn btn-default">Import Excel</button>
-                  </form>
-                </div>
-                <div class="col-sm-4" align="right">
-                  <a href="{{ url('admin/question/create') }}" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>      
+                <div class="col-sm-12 text-right">
+                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalImport"><i class="fa fa-upload" aria-hidden="true"></i></button>
+                  <a href="{{ url('admin/question/create') }}" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
                 </div>
               </div>
               <table class="table table-bordered" id="table-data">
@@ -48,6 +42,42 @@
     </section>
     <!-- /.content -->
   </div>
+
+  <!-- Modal -->
+<div id="modalImport" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <form method="post" action="{{ url('admin/question/import') }}" enctype='multipart/form-data'>
+      {{ csrf_field() }}
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <label class="col-sm-4">Pilih File</label>
+          <div class="col-sm-8">
+            <input type="file" name="file" class="form-control" required>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-4">Sample File</label>
+          <div class="col-sm-8">
+            <a href="{{ asset('sample/file_sample.csv') }}">Download sample</a>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success">Import Excel</button>
+      </div>
+    </div>
+  </form>
+
+  </div>
+</div>
 
   <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
