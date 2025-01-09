@@ -38,13 +38,13 @@ php artisan serve
 
 ### Screenshots
 
-![1](https://raw.githubusercontent.com/henkiws/Simulasi-CAT-Computer-Assisted-Test-CPNS/master/screenshot/login.png)
+![1](https://raw.githubusercontent.com/henkiws/Simulasi-CAT-Computer-Assisted-Test-CPNS/master/screenshoot/login.png)
 
-![2](https://raw.githubusercontent.com/henkiws/Simulasi-CAT-Computer-Assisted-Test-CPNS/master/screenshot/profile.png)
+![2](https://raw.githubusercontent.com/henkiws/Simulasi-CAT-Computer-Assisted-Test-CPNS/master/screenshoot/profile.png)
 
-![3](https://raw.githubusercontent.com/henkiws/Simulasi-CAT-Computer-Assisted-Test-CPNS/master/screenshot/master.png)
+![3](https://raw.githubusercontent.com/henkiws/Simulasi-CAT-Computer-Assisted-Test-CPNS/master/screenshoot/master.png)
 
-![4](https://raw.githubusercontent.com/henkiws/Simulasi-CAT-Computer-Assisted-Test-CPNS/master/screenshot/exam.png)
+![4](https://raw.githubusercontent.com/henkiws/Simulasi-CAT-Computer-Assisted-Test-CPNS/master/screenshoot/exam.png)
 
 
 ## License
